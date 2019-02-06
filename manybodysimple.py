@@ -31,6 +31,7 @@ def InitialData():
     size1=10
     size2=50
     size3=10000
+    #these are guesses from memory-- correct values will need to be filled in later or the code will need to be adapted to open or closed clusters
     masscategory1=0.001*np.random.uniform(.9,1.1,size1); #Msun (jupiter)
     masscategory2=0.00001*np.random.uniform(0.2*5,size2); #Msun (Earth)
     masscategory3=0.0000001*np.random.uniform(0.01,100,size3); #comet
@@ -41,5 +42,24 @@ def InitialData():
     orbitangle1=np.zeros(size1);
     orbitangle2=np.zeros(size2);
     orbitangle3=np.zeros(size3);
+    orbitalradius1=np.random.uniform(2.,50.,size1);
+    orbitalradius2=np.random.uniform(.1,2,size2);
+    orbitalradius3=np.random.uniform(.1,50,size3);
+    x01=orbitalradius1*np.cos(phi0category1);
+    y01=orbitalradius1*np.sin(phi0category1);
+    x02=orbitalradius1*np.cos(phi0category2);
+    y02=orbitalradius1*np.sin(phi0category2);
+    x03=orbitalradius1*np.cos(phi0category3);
+    y03=orbitalradius1*np.sin(phi0category3);
+    
+    x0=np.zeros(size1+size2+size3);
+    y0=np.zeros(size1+size2+size3);
+    x0[1:size1]=x01;
+    x0[size1:size1+size2]=x02;
+    x0[size2:size1+size2+size3]=x03;
+    y0[1:size1]=y01;
+    y0[size1:size1+size2]=y02;
+    y0[size2:size1+size2+size3]=y03;
     
 
+    #velocity initial conditions are not trivial. 
