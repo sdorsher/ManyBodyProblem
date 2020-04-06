@@ -52,7 +52,7 @@ class OrbitDiffEq:
         return azii
     def dvecdt(self,t,xvec):
         avec=np.array([self.dvxidt(self,xvec),self.dvyidt(self,xvec),self.dvzidt(self,xvec)])
-        print("avec", avec)
+        #print("avec", avec)
         avecT=avec.transpose()
         self.avec=avecT
         dvec2=np.array([self.dxidt(t,xvec),self.dyidt(t,xvec),self.dzidt(self,xvec),avec[0,:],avec[1,:],avec[2,:]])
