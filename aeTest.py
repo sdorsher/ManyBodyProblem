@@ -19,11 +19,12 @@ def findPerApHelion(npstar1x,theta0,ecc0,rad0):
     mostb2=np.abs(1-b/npstar1x[:,1]*npstar1x[:,0])
     for b1,b2 in zip(mostb1,mostb2):
         mostb.append(min(b1,b2))
-    indexminmostb=np.argmin(mostb) #aphelion
-    indexminmostb2=np.argmin(mostb[20:20+indexminmostb-20])+20 #perihelion
+    indexminmostb=np.argmin(mostb) 
+    indexminmostb2=np.argmin(mostb[20:20+indexminmostb-20])+20 #aphelion
     assert np.abs(npstar1x[0,0]-npstar1x[indexminmostb,0])<1, "did not find aphelion"
-    assert np.abs(indexminmostb2/indexminmostb-1)<0.05, "did not find perihelion"
-    mins=localMinimumIndex(mostb[0:indexminmostb2+1])
+    
+    mins=localMinimumIndex(mostb[0:indexminmostb2+1]) #perhelion
+    assert np.abs(mins[0]/indexminmostb2-1./2)<0.05, "did not find perihelion"
     coordper=[npstar1x[mins[0],0],npstar1x[mins[0],1]]
     coordap=[npstar1x[indexminmostb2,0], npstar1x[indexminmostb2,1]]
     print("aphelion", coordap)
