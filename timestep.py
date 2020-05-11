@@ -11,7 +11,14 @@ def timestep(numsteps,dt,xyuvaeqellipse,outputevery):
     star1a=[]
     star2a=[]
     times=[]
+    star1x.append(xvec0[0])
+    star2x.append(xvec0[1])
+    star1a.append(avec0[0])
+    star2a.append(avec0[1])
+    times.append(0.0)
+    outputevery=1
     for i in np.arange(1,numsteps):
+
         masses,xvec,avec,t=ODEeq.timestepRK4ODE(i,dt)
         #ODEeq.print2D()
         if i%outputevery==0:
@@ -25,4 +32,5 @@ def timestep(numsteps,dt,xyuvaeqellipse,outputevery):
     npstar2a=np.array(star2a)
     npstar1a=np.array(star1a)
     nptimes=np.array(times)
+
     return nptimes, npstar1x, npstar2x, npstar1a, npstar2a
