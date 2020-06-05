@@ -70,6 +70,8 @@ def getxyuveqtwoellipses(initdat,isper):
         v=np.zeros(2)
         #v= np.sqrt(masses[1]*masses[0]/masses*(2./starsep-1./(2*orbitalr)))
         vapsq=masses[1]*masses[0]/masses/orbitalr*(1-eccentricity)/(1+eccentricity)/4.
+        if isper:
+            vapsq=masses[1]*masses[0]/masses/orbitalr*(1+eccentricity)/(1-eccentricity)/4.
         #vapsq=masses[1]*masses[0]/masses*(1./(coordsep)-1./orbitalr)/2.
         v=np.sqrt(vapsq)
         #v= np.sqrt(masses[1]*masses[0]/masses*(1./orbitalr-2./starsep))
