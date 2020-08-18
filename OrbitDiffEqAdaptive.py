@@ -73,7 +73,7 @@ class OrbitDiffEqAdaptive:
         return self
     def list2D(self):
         return self.masses,self.xvec,self.avec,self.ti
-    def timestepRK4ODE(self,step,dt):
+    def timestepRK4ODE(self,step,dt,dtmax):
 
     
         h=dt
@@ -81,12 +81,11 @@ class OrbitDiffEqAdaptive:
         #m represents choices of mass
         i=step
         repeat=True
-        h=step
         hnew=h
         tnew=self.ti
         rho=1
         while(repeat):
-            repeat, hnew, h, tnew,intvalxvec, rho=RK4adaptive.RK4adaptive(hnew,self.ti,self.xvec,self.dvecdt,self.delta)
+            repeat, hnew, h, tnew,intvalxvec, rho=RK4adaptive.RK4adaptive(hnew,dtmax,self.ti,self.xvec,self.dvecdt,self.delta)
             print(repeat,hnew,h,tnew,rho)
  
         #print(xii)
