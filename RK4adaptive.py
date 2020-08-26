@@ -4,8 +4,18 @@ import numpy as np
 def RK4adaptive(h,dtmax,t,xvec,f,delta):
     t1,x1=RK4implicit.RK4implicit(h,t,xvec,f)
     t2,x2=RK4implicit.RK4implicit(2*h,t,xvec,f)
-    #print(x1-x2)
-    rho=30*h*delta/np.sqrt(np.sum((x1[0:3]-x2[0:3])**2))
+    #print((t2-t1)/h)
+    diffx=x1-x2
+    diffxxvals=diffx[0,:3]
+    diffxsq=diffxxvals**2
+    sumsq=np.sum(diffxsq)
+    magdiff=np.sqrt(sumsq)
+    print(h)
+    print(diffxxvals)
+    print(diffxsq)
+    print(sumsq)
+    print(magdiff)
+    rho=30*h*delta/magdiff
     repeat=False
     hnew=h
     epsilon=1e-6
