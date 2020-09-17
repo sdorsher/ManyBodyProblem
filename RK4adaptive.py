@@ -1,7 +1,7 @@
 import RK4implicit
 import numpy as np
 
-def RK4adaptive(h,dtmax,t,xvec,f,delta):
+def RK4adaptive(h,dtmax,dtmin,t,xvec,f,delta):
     t1,x1=RK4implicit.RK4implicit(h,t,xvec,f)
     t2,x2=RK4implicit.RK4implicit(2*h,t,xvec,f)
     #print((t2-t1)/h)
@@ -26,6 +26,9 @@ def RK4adaptive(h,dtmax,t,xvec,f,delta):
     elif np.abs(rho)<1:
         repeat=True
     hnew*=rho**.25
+    if hnew<dtmin+epsilon:
+        repeat=False
+        hnew=dtmin
     if hnew>=dtmax-epsilon:
         repeat=False
         hnew=dtmax

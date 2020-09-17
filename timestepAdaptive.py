@@ -1,7 +1,7 @@
 import numpy as np
 import math
 import OrbitDiffEqAdaptive
-def timestepAdaptive(numsteps,dt,dtmax,xyuvaeqellipse,outputevery,delta):
+def timestepAdaptive(numsteps,dt,dtmax,dtmin,xyuvaeqellipse,outputevery,delta):
     masses,xvec0,avec0=xyuvaeqellipse
     ODEeq= OrbitDiffEqAdaptive.OrbitDiffEqAdaptive(masses,xvec0,avec0,0.0,delta)
     #ODEeq.print2D()
@@ -22,7 +22,7 @@ def timestepAdaptive(numsteps,dt,dtmax,xyuvaeqellipse,outputevery,delta):
     dtarr.append(dt)
     outputevery=1
     for i in np.arange(1,numsteps):
-        masses,xvec,avec,t,dt,dtlast,rho=ODEeq.timestepRK4ODE(i,dt,dtmax)
+        masses,xvec,avec,t,dt,dtlast,rho=ODEeq.timestepRK4ODE(i,dt,dtmax,dtmin)
         #ODEeq.print2D()
         if i%outputevery==0:
             star1x.append(xvec[0])
