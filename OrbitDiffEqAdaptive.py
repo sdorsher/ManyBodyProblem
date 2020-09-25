@@ -86,10 +86,10 @@ class OrbitDiffEqAdaptive:
         rho=1
         intvalxvec=0.
         while(repeat):
-            repeat, hnew, h, tnew,intvalxvec, rho=RK4adaptive.RK4adaptive(hnew,dtmax,dtmin,self.ti,self.xvec,self.dvecdt,self.delta)
+            repeat, hnew, h, tnew,intvalxvec, rho,err=RK4adaptive.RK4adaptive(hnew,dtmax,dtmin,self.ti,self.xvec,self.dvecdt,self.delta)
             if(repeat):
-                print(repeat,hnew,h,tnew,rho)
+                print(repeat,hnew,h,tnew,rho,err)
  
         #print(xii)
         self.updateINTERNAL(intvalxvec,tnew)
-        return self.masses, self.xvec,self.avec,self.ti,hnew,h,rho
+        return self.masses, self.xvec,self.avec,self.ti,hnew,h,rho,err
