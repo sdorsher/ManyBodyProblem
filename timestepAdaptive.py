@@ -41,5 +41,6 @@ def timestepAdaptive(numsteps,dt,dtmax,dtmin,xyuvaeqellipse,outputevery,delta):
     npstar1a=np.array(star1a)
     nptimes=np.array(times)
     nperr=np.array(errarr)
-    return nptimes, npstar1x, npstar2x, npstar1a, npstar2a, nperr
+    npdt=np.array(dtarr)
+    return nptimes, npstar1x, npstar2x, npstar1a, npstar2a, nperr,npdt
 

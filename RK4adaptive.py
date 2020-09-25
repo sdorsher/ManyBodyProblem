@@ -25,7 +25,8 @@ def RK4adaptive(h,dtmax,dtmin,t,xvec,f,delta):
         repeat=False
     elif np.abs(rho)<1:
         repeat=True
-        hnew*=rho**.25
+
+    hnew*=rho**.25
     if hnew<dtmin+epsilon:
         repeat=False
         hnew=dtmin
