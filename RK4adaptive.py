@@ -22,9 +22,11 @@ def RK4adaptive(h,dtmax,dtmin,t,xvec,f,delta):
     if np.abs(np.abs(rho)-1)<epsilon:
         repeat=False
     elif np.abs(rho)>1:
-        repeat=True 
-    elif np.abs(rho)<1:
         repeat=False
+        print(rho, "False")
+    elif np.abs(rho)<1:
+        repeat=True
+        print(rho, "True")
 
     hnew*=rho**.25
     if hnew<dtmin+epsilon:
@@ -38,5 +40,5 @@ def RK4adaptive(h,dtmax,dtmin,t,xvec,f,delta):
     if repeat:
         tfinal =t
         xfinal = xvec
-    err = 1./30.*magdiff*(hnew/h)**5.
+    err = 1./30.*magdiff
     return repeat, hnew, h, tfinal, xfinal, rho,err
